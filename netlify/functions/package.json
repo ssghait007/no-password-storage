@@ -1,40 +1,40 @@
 {
-  "name": "no-password-storage",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "prepare": "husky install",
-    "lint": "yarn lint:js",
-    "test": "jest"
-  },
-  "lint-staged": {
-    "*.{js,vue}": "eslint"
-  },
-  "dependencies": {
-    "@netlify/functions": "^0.7.2",
-    "@types/node": "^14.17.27",
-    "core-js": "^3.15.1",
-    "faunadb": "^4.4.1",
-    "ts-loader": "6.0.0",
-    "typescript": "^4.4.4"
-  },
-  "devDependencies": {
-    "@babel/eslint-parser": "^7.14.7",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^27.0.5",
-    "eslint": "^7.29.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-nuxt": "^2.0.0",
-    "eslint-plugin-vue": "^7.12.1",
-    "husky": "^6.0.0",
-    "jest": "^27.0.5",
-    "lint-staged": "^10.5.4",
-    "prettier": "^2.3.2",
-    "ts-jest": "^27.0.3",
-  }
+	"name": "no-password-storage",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "nuxt",
+		"build": "nuxt build",
+		"start": "nuxt start",
+		"generate": "nuxt generate",
+		"lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+		"prepare": "husky install",
+		"lint": "yarn lint:js",
+		"test": "jest"
+	},
+	"lint-staged": {
+		"*.{js,vue}": "eslint"
+	},
+	"dependencies": {
+		"@netlify/functions": "^0.7.2",
+		"@types/node": "^14.17.27",
+		"core-js": "^3.15.1",
+		"faunadb": "^4.4.1",
+		"ts-loader": "6.0.0",
+		"typescript": "^4.4.4"
+	},
+	"devDependencies": {
+		"@babel/eslint-parser": "^7.14.7",
+		"babel-core": "7.0.0-bridge.0",
+		"babel-jest": "^27.0.5",
+		"eslint": "^7.29.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-nuxt": "^2.0.0",
+		"eslint-plugin-vue": "^7.12.1",
+		"husky": "^6.0.0",
+		"jest": "^27.0.5",
+		"lint-staged": "^10.5.4",
+		"prettier": "^2.3.2",
+		"ts-jest": "^27.0.3"
+	}
 }
