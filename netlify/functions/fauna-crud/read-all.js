@@ -3,7 +3,7 @@ const process = require('process')
 
 const { query, Client } = require('faunadb')
 
-const client = new faunadb.Client({
+const client = new Client({
   secret: process.env.FAUNADB_SERVER_SECRET,
   domain: 'db.us.fauna.com',
   scheme: 'https',
