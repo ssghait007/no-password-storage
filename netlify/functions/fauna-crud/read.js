@@ -14,8 +14,9 @@ const handler = async (event) => {
   console.log(`Function 'read' invoked. Read id: ${id}`)
 
   try {
-    const response = await client.query(query.Paginate(query.Match(query.Index('single'), id)))
-//     Paginate(Match(Index("single"), 1))
+    const response = await client.query(query.Map(query.Paginate(query.Match(query.Index("single"), id)),
+                                                  query.Lambda("data", query.Get(query.Var("data")))))
+//     Map(Paginate(Match(Index("single"), "2")), Lambda("data", Get(Var("data"))))
     console.log('success', response)
     return {
       statusCode: 200,
