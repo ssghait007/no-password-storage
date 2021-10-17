@@ -13,7 +13,7 @@ const handler = async () => {
   console.log('Function `read-all` invoked')
 
   try {
-    const response = await client.query(query.Paginate(query.Match(query.Index('all_items'))))
+    const response = await client.query(query.Paginate(query.Match(query.Index('all'))))
     const itemRefs = response.data
     // create new query out of item refs. http://bit.ly/2LG3MLg
     const getAllItemsDataQuery = itemRefs.map((ref) => query.Get(ref))
