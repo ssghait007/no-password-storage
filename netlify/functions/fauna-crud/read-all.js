@@ -8,7 +8,7 @@ const client = new Client({
   domain: 'db.us.fauna.com',
   scheme: 'https',
 });
-
+console.log("process.env.FAUNADB_SERVER_SECRET",process.env.FAUNADB_SERVER_SECRET)
 const handler = async () => {
   console.log('Function `read-all` invoked')
 
