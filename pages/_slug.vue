@@ -2,13 +2,39 @@
   <div>
     <Header :isActive="this.showRegModal"></Header>
     <div v-if="this.pageAvailable === 'unavailable'">
-      Site is taken. If you are the owner, Enter your password to continue {WHEN
-      MODAL CLOSED DECRYPT DATA}
+      Site is taken. If you are the owner, Enter your password to continue
+      <button class="btn btn-blue" @click.prevent="visibleModal('login')">
+        Login
+      </button>
+      <div v-if="showLoginModal" class="moda">
+        <!-- Modal -->
+        <div
+          v-if="showLoginModal"
+          class="bg-white rounded-xl shadow-2xl p-6 w-6/12 mx-10"
+        >
+          <!-- Title -->
+          <span class="font-bold block text-2xl mb-3">🍺 Login </span>
+          <label class="block">
+            <span class="text-gray-700">Password</span>
+          </label>
+          <input
+            type="password"
+            class="form-input px-4 py-3 rounded-full border border-gray-300"
+            v-model="password"
+          />
+
+          <!-- Buttons -->
+          <div class="text-right space-x-5 mt-5">
+            <button @click="Login()" class="btn btn-blue">Submit</button>
+            <button @click="hideModal('login')" class="btn">Cancel</button>
+          </div>
+        </div>
+      </div>
     </div>
     <div v-if="this.pageAvailable === 'available'">
       Page is available,Enter password to create your site {THIS WILL BE IN
       MODAL}
-      <button class="btn btn-blue" @click.prevent="visibleModal()">
+      <button class="btn btn-blue" @click.prevent="visibleModal('reg')">
         Register
       </button>
 
@@ -46,12 +72,18 @@
           <!-- Buttons -->
           <div class="text-right space-x-5 mt-5">
             <button @click="checkPass()" class="btn btn-blue">Submit</button>
-            <button @click="hideModal()" class="btn">Cancel</button>
+            <button @click="hideModal('reg')" class="btn">Cancel</button>
           </div>
         </div>
       </div>
     </div>
-    <div v-if="this.pageAvailable === 'show'">DATA</div>
+    <div v-if="this.pageAvailable === 'show'">
+      <input
+        type="text"
+        class="form-input px-4 py-3 rounded-full border border-gray-300"
+        v-model="this.posts.data.data[0].text"
+      />
+    </div>
   </div>
 </template>
 
@@ -66,29 +98,34 @@ export default {
       posts: null,
       pageAvailable: "unknown",
       showRegModal: false,
+      showLoginModal: false,
       pass: "",
       conpass: "",
       passError: "",
+      password: "",
     };
   },
   async fetch() {
-    this.posts = await fetch(
+    const resp = await fetch(
       `https://no-password-store.netlify.app/.netlify/functions/fauna-crud/${this.slug}`
     )
       .then((res) => res.json())
       .catch((e) => console.log(``));
-    if (this.posts?.data?.length) {
+    if (resp?.data?.length) {
       this.pageAvailable = "unavailable";
+      this.posts = resp.data[0];
     } else {
       this.pageAvailable = "available";
     }
   },
   methods: {
-    visibleModal() {
-      this.showRegModal = true;
+    visibleModal(id) {
+      id === "reg" && (this.showRegModal = true);
+      id === "login" && (this.showLoginModal = true);
     },
-    hideModal() {
-      this.showRegModal = false;
+    hideModal(id) {
+      id === "reg" && (this.showRegModal = false);
+      id === "login" && (this.showLoginModal = false);
     },
     checkPass() {
       if (this.pass === this.conpass) {
@@ -99,6 +136,10 @@ export default {
       } else {
         this.passError = "Password dont match";
       }
+    },
+    Login() {
+      console.log("decrypting data");
+      this.pageAvailable = "show";
     },
     async createSite() {
       const ip = await this.$axios.$post(
