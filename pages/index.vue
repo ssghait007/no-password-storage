@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <Header></Header> -->
     No password storage app
     <br /><br />
     Choose your page
@@ -34,7 +35,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-
 export default Vue.extend({
   data() {
     return {
