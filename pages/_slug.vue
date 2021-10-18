@@ -103,7 +103,7 @@ export default {
     async createSite() {
       const ip = await this.$axios.$post(
         `https://no-password-store.netlify.app/.netlify/functions/fauna-crud/create`,
-        { id: this.slug, data: [{ text: "" }] }
+        { siteid: this.slug, data: [{ text: "" }] }
       );
       console.log(ip);
     },
