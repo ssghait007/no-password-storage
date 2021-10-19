@@ -81,7 +81,7 @@
       <input
         type="text"
         class="form-input px-4 py-3 rounded-full border border-gray-300"
-        v-model="this.posts.data.data[0].text"
+        v-model="this.textData"
       />
       <button @click="updateData()" class="btn btn-blue">Update</button>
     </div>
@@ -104,6 +104,7 @@ export default {
       conpass: "",
       passError: "",
       password: "",
+      textData: "",
     };
   },
   async fetch() {
@@ -115,6 +116,7 @@ export default {
     if (resp?.data?.length) {
       this.pageAvailable = "unavailable";
       this.posts = resp.data[0];
+      this.textData = this.posts.data.data[0].text;
     } else {
       this.pageAvailable = "available";
     }
@@ -140,8 +142,8 @@ export default {
     },
     async updateData() {
       const ip = await this.$axios.$post(
-        `https://no-password-store.netlify.app/.netlify/functions/fauna-crud/create`,
-        { siteid: this.slug, data: this.posts.data.data }
+        `https://no-password-store.netlify.app/.netlify/functions/fauna-crud/update`,
+        { siteid: this.slug, data: [{ text: this.textData }] }
       );
     },
     Login() {
