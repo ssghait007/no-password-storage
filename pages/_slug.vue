@@ -137,8 +137,8 @@ export default {
       }
     },
     async updateData() {
-      const ip = await this.$axios.$post(
-        `https://no-password-store.netlify.app/.netlify/functions/fauna-crud/update`,
+      const ip = await this.$axios.$put(
+        `https://no-password-store.netlify.app/.netlify/functions/fauna-crud/${this.posts.ref["@ref"].id}`,
         { siteid: this.slug, data: [{ text: this.textData }] }
       );
     },
