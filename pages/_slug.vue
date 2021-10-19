@@ -83,6 +83,7 @@
         class="form-input px-4 py-3 rounded-full border border-gray-300"
         v-model="this.posts.data.data[0].text"
       />
+      <button @click="updateData()" class="btn btn-blue">Update</button>
     </div>
   </div>
 </template>
@@ -136,6 +137,12 @@ export default {
       } else {
         this.passError = "Password dont match";
       }
+    },
+    async updateData() {
+      const ip = await this.$axios.$post(
+        `https://no-password-store.netlify.app/.netlify/functions/fauna-crud/create`,
+        { siteid: this.slug, data: this.posts.data.data }
+      );
     },
     Login() {
       console.log("decrypting data");
