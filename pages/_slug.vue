@@ -78,11 +78,7 @@
       </div>
     </div>
     <div v-if="this.pageAvailable === 'show'">
-      <input
-        type="text"
-        class="form-input px-4 py-3 rounded-full border border-gray-300"
-        v-model="this.textData"
-      />
+      <textarea v-model="textData" placeholder="add multiple lines"></textarea>
       <button @click="updateData()" class="btn btn-blue">Update</button>
     </div>
   </div>
