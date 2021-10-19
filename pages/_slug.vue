@@ -78,7 +78,11 @@
       </div>
     </div>
     <div v-if="this.pageAvailable === 'show'">
-      <textarea v-model="textData" placeholder="add multiple lines"></textarea>
+      <textarea
+        v-model="textData"
+        class="mt-1 block w-full"
+        rows="15"
+      ></textarea>
       <button @click="updateData()" class="btn btn-blue">Update</button>
     </div>
   </div>
